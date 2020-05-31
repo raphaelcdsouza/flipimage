@@ -1,6 +1,7 @@
 :root {
   --bg: #DEB841;
   --font: #37323E;
+  --arrows: #EBEBD366;
 }
 
 * {
@@ -11,13 +12,19 @@
 }
 
 body {
+  height: 100vh;
   background: var(--bg);
   color: var(--font);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   -webkit-font-smoothing: antialiased;
 }
 
 body, input, button {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
 }
 
@@ -29,10 +36,189 @@ button {
   cursor: pointer;
 }
 
-main {
-  height: 100vh;
+body h1 {
+  width: 480px;
+  letter-spacing: 10px;
+  font-size: 40px;
+  margin-bottom: 25px;
+}
 
+body > div {
+  margin-bottom: 50px;
   display: flex;
   align-items: center;
-  justify-content: center;
+
+  position: relative;
+}
+
+body > div input {
+  width: 700px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 0;
+}
+
+body > div button {
+  height: 40px;
+  padding: 10px;
+  margin-left: 10px;
+  border: 0;
+  border-radius: 6px;
+  background: #1446A0;
+  color: #fff;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+body > div span {
+  position: absolute;
+  bottom: -37px;
+}
+
+body > div button:hover {
+  background-color: #10377F;
+}
+
+main {
+  display: grid;
+  grid-template: auto / auto auto;
+  grid-gap: 10px;
+  padding: 20px;
+  background-color: #EBEBD322;
+  border-radius: 40px;
+
+  perspective: 1000px;
+}
+
+.flip-container {
+  width: 480px;
+  height: 320px;
+  position: relative;
+}
+
+
+.flip-container .flipper img{
+  width: 480px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 20px;
+  
+  transform-style: preserve-3d;
+  transition: 1s;
+}
+
+.flip-container .arrow-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template: 50px 50px 50px / 50px 50px 50px;
+  grid-template-areas:
+    ".          arrow-top    ."
+    "arrow-left .            arrow-right"
+    ".          arrow-bottom .";
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.arrow-top {
+  grid-area: arrow-top;
+  justify-self: center;
+  align-self: start;
+}
+
+.arrow-bottom {
+  grid-area: arrow-bottom;
+  justify-self: center;
+  align-self: end;
+}
+
+.arrow-left {
+  grid-area: arrow-left;
+  justify-self: start;
+  align-self: center;
+}
+
+.arrow-right {
+  grid-area: arrow-right;
+  justify-self: end;
+  align-self: center;
+}
+
+.arrow-top, .arrow-right, .arrow-bottom, .arrow-left {
+  margin: 4px;
+  cursor: pointer;
+  position: relative;
+}
+
+.arrow-top::before, .arrow-right::before, .arrow-bottom::before, .arrow-left::before {
+  content: '';
+  position: absolute;
+  height: 0;
+  width: 0;
+}
+
+.arrow-top::before {
+  top: 0;
+  border-bottom: 10px solid var(--arrows);
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+}
+
+.arrow-right::before {
+  right: 0;
+  border-left: 10px solid var(--arrows);
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+
+.arrow-bottom::before {
+  bottom: 0;
+  border-top: 10px solid var(--arrows);
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+}
+
+.arrow-left::before {
+  left: 0;
+  border-right: 10px solid var(--arrows);
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+
+.rotate-y {
+  transform: rotateY(180deg);
+}
+
+.rotate-x {
+  transform: rotateX(180deg);
+}
+
+.rotate-z {
+  transform: rotateZ(180deg);
+}
+
+.error {
+  background: #DB3069;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+.error::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 10px;
+  width: 0;
+  height: 0;
+  border-bottom: 5px solid #DB3069 ;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
 }
