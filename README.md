@@ -19,7 +19,7 @@ Below are listed the main features that the application should have and also the
 
 With this little project I've learned concepts about:
 
-- CSS transform propertie;
+- CSS transform property;
 - CSS selectors;
 - JS fetch API;
 - JS error handling;
